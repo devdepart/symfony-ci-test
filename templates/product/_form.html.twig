@@ -1,0 +1,27 @@
+{{ form_start(form) }}
+
+{{ form_errors(form) }}
+
+<div class="form-row">
+	{{ form_row(form.name) }}
+</div>
+
+<div class="form-row">
+	{{ form_row(form.description) }}
+</div>
+
+<div class="form-row">
+	{{ form_row(form.price) }}
+</div>
+
+{{ form_rest(form) }}
+
+<button class="button" type="submit">
+	{{ button_label|default('Save') }}
+</button>
+
+<a class="button button-secondary" href="{{ path('product_index') }}">
+	Cancel
+</a>
+
+{{ form_end(form, {render_rest: false}) }}

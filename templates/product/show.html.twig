@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Product #{{ product.id }}</h1>
+
+        <a class="button button-secondary" href="{{ path('product_index') }}">
+            Back to products
+        </a>
+    </div>
+
+    <div class="details">
+        <dl>
+            <dt>Name</dt>
+            <dd>{{ product.name }}</dd>
+
+            <dt>Description</dt>
+            <dd>{{ product.description|default('—') }}</dd>
+
+            <dt>Price</dt>
+            <dd>
+                ${{ '%d.%02d'|format(
+                    product.price // 100,
+                    product.price % 100
+                ) }}
+            </dd>
+
+            <dt>Created at</dt>
+            <dd>{{ product.createdAt|date('Y-m-d H:i:s') }}</dd>
+        </dl>
+    </div>
+
+    <div class="actions" style="margin-top: 20px;">
+        <a
+            class="button"
+            href="{{ path('product_edit', {id: product.id}) }}"
+			>
+            Edit product
+        </a>
+
+        <form
+            method="post"
+            action="{{ path('product_delete', {id: product.id}) }}"
+            onsubmit="return confirm('Delete this product?');"
+			>
+            <input
+                type="hidden"
+                name="_token"
+                value="{{ csrf_token('delete-product-' ~ product.id) }}"
+				>
+
+            <button class="button button-danger" type="submit">
+                Delete product
+            </button>
+        </form>
+    </div>
+{% endblock %}

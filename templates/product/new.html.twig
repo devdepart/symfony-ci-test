@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create product{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Create product</h1>
+    </div>
+
+    {% include 'product/_form.html.twig' with {
+        form: form,
+        button_label: 'Create product'
+    } %}
+{% endblock %}

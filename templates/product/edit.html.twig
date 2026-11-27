@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ product.name }}{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <h1>Edit product #{{ product.id }}</h1>
+    </div>
+
+    {% include 'product/_form.html.twig' with {
+        form: form,
+        button_label: 'Save changes'
+    } %}
+{% endblock %}
